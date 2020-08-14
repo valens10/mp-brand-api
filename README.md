@@ -1,1 +1,1 @@
-# mp-brand-api
+# my-brand-api
