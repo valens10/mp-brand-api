@@ -1,4 +1,5 @@
 // config.js
+//port = process.env.PORT || 3000,
 const config = {
  app: {
    port: 3000

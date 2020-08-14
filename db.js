@@ -19,3 +19,6 @@ database.on('error',
 database.once('open', function() {
     console.log("we're connected!");
 });
+
+
+module.exports = database;
