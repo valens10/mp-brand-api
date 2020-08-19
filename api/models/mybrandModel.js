@@ -7,11 +7,9 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
     full_name: {
     type: String,
-    required: 'Name is required'
     },
     email: {
     type: String,
-    required: 'email is required'
     },
     status: {
     type: [{
@@ -19,6 +17,9 @@ var UserSchema = new Schema({
         enum: ['ACTIVE', 'INACTIVE'],
         default: 'INACTIVE' 
     }]
+    },
+    password: {
+    type: String,
     },
     Created_at: {
     type: Date,

@@ -1,10 +1,10 @@
 'use strict';
-
-
 var mongoose = require('mongoose'),
   User = mongoose.model('Users');
 
-exports.list_all_users = function(req, res) {
+const {userSchema} = require('../validation/validationSchema');
+
+exports.list_all_users = function (req, res) {
   User.find({}, function(err, user) {
     if (err)
       res.send(err);
@@ -13,13 +13,22 @@ exports.list_all_users = function(req, res) {
 };
 
 
-exports.create_a_user = function(req, res) {
-  var new_user = new User(req.body);
-  new_user.save(function(err, user) {
-    if (err)
-      res.send(err.message);
-    res.json(user);
-  });
+exports.create_a_user = async function (req, res) {
+  try {
+    const { full_name, email, status, password } = req.body;
+    const params = await userSchema.validateAsync(req.body);
+    const doesExist = await User.findOne({ email: params.email })
+    if (doesExist)
+      res.send("User with this email is exist");
+    
+    const new_user = new User(params);
+    const savedUser = await new_user.save();
+    res.send(savedUser);
+    
+  } catch (error){
+    res.send(error.details[0].message)
+  }
+  
 };
 
 
