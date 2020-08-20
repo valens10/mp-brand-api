@@ -20,13 +20,17 @@ app.use(bodyParser.urlencoded(
 app.use(bodyParser.json());
 
 //importing route
-var user_routes = require('./api/routes/user');
-var post_routes = require('./api/routes/post');
+var signup_routes = require('./api/routes/signup');
+var signin_routes = require('./api/routes/signIn');
+var updateUser_routes = require('./api/routes/updateUser');
+var post_routes = require('./api/routes/articles');
 var message_routes = require('./api/routes/message');
 var comment_routes = require('./api/routes/comment');
 
 //register the route
-user_routes(app);
+signup_routes(app)
+signin_routes(app)
+updateUser_routes(app);
 post_routes(app);
 message_routes(app);
 comment_routes(app);
@@ -37,5 +41,6 @@ app.use(function(req, res) {
 });
 
 
-app.listen(port,
-  () => console.log("app is listerning on port " + port));
+app.listen(port, () => console.log("app is listerning on port " + port));
+
+module.exports = app; // for testing

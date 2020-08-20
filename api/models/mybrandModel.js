@@ -20,6 +20,7 @@ var UserSchema = new Schema({
     },
     password: {
     type: String,
+    required: 'password is required'
     },
     Created_at: {
     type: Date,
