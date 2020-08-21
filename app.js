@@ -11,7 +11,7 @@ import bodyParser from 'body-parser';
   
 //mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-const db = require('./db')
+import db from './db';
 const port = config.app.port;
 
 
@@ -44,4 +44,4 @@ app.use(function(req, res) {
 
 app.listen(port, () => console.log("app is listerning on port " + port));
 
-module.exports = app; // for testingrt
+export default app; // for testingrt

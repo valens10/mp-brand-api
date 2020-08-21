@@ -1,6 +1,6 @@
 'use strict';
 import articleView from '../controllers/articles';
-module.exports = function(app) {
+export default function(app) {
   // posts Routes
   app.route('/articles')
     .get(articleView.list_all_posts)

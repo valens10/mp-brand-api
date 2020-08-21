@@ -31,7 +31,6 @@
     "mongoose": "^5.9.28"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.11.0",
     "coveralls": "^3.1.0",
     "jest": "^26.4.0",
     "supertest": "^4.0.2"

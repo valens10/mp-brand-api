@@ -1,6 +1,6 @@
 'use strict';
 import messagesView from '../controllers/message';
-module.exports = function(app) {
+export default function(app) {
   // posts Routes
   app.route('/messages')
     .get(messagesView.list_all_messages)
