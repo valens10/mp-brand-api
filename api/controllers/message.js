@@ -1,8 +1,7 @@
 'use strict';
 
-
-var mongoose = require('mongoose'),
-  Message = mongoose.model('Messages');
+import mongoose from 'mongoose';
+const  Message = mongoose.model('Messages');
 
 exports.list_all_messages = function(req, res) {
   Message.find({}, function(err, message) {

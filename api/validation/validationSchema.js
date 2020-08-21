@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+import Joi from '@hapi/joi';
 
 module.exports.userSchema = Joi.object({
     full_name: Joi.string().min(2).required(),

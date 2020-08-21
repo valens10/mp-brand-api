@@ -1,14 +1,14 @@
 'use strict';
 
 
-var mongoose = require('mongoose'),
-  Comment = mongoose.model('Comments');
+import mongoose from 'mongoose';
+const  Comment = mongoose.model('Comments');
 
 exports.list_all_comment = function(req, res) {
   Comment.find({}, function(err, comment) {
     if (err)
       res.send(err);
-    res.json(comment);
+    res.status(200).json(comment);
   });
 };
 

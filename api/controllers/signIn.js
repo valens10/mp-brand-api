@@ -1,12 +1,9 @@
 'use strict';
-var mongoose = require('mongoose'),
-    User = mongoose.model('Users');
-
-const jwt = require('jsonwebtoken');
-
-const validationSchema = require("../validation/validationSchema")
-
-const bcrypt = require('bcrypt');
+import mongoose from 'mongoose';
+import jwt from'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import validationSchema from "../validation/validationSchema"
+const User = mongoose.model('Users');
 
 exports.signIn = async function (req, res) {
   try {
@@ -36,7 +33,7 @@ exports.signIn = async function (req, res) {
       } 
     
   } catch (error){
-    res.send(error.details.message);
+    res.send(error.details[0].message);
   }
 
 };
