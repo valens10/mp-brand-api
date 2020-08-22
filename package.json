@@ -3,11 +3,17 @@
   "version": "1.0.0",
   "description": "This is the api backend for my brand project ",
   "main": "app.js",
+  
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
   "scripts": {
     "test": "jest",
-    "main": "main.js",
     "start": "nodemon main.js",
-    "npm start":"nodemon main.js",
     "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {

@@ -21,4 +21,4 @@ database.once('open', function() {
 });
 
 
-module.exports = database;
+export default database;

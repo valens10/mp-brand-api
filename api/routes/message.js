@@ -1,6 +1,5 @@
 'use strict';
 import messagesView from '../controllers/message';
-import { auth, adminAuth } from '../../middlewares/authorization';
 export default function(app) {
   // posts Routes
   app.route('/messages')

@@ -2,21 +2,24 @@ import jwt from 'jsonwebtoken';
 require('dotenv').config();
 
 export const auth = (req, res, next) => {
-  const token = req.header('token ');
-    if (!token)
-        return res.status(401).send({
-            msg: 'Access Denied, Login first.'
-        });
+  const token = req.header('Authorization');
+  if (!token) {
+    res.status(401).send({ msg: 'Access Denied, Login first.' });
+    return;
+    }
+        
   try {
     const validToken = jwt.verify(token, process.env.PRIVATE_KEY);
-      req.user = validToken;
-      console.log("auth success")
-    return next();
+    req.user = validToken;
+    console.log("auth success")
+    return req.user;
   } catch (error) {
-      return res.status(401).send({ msg: 'Invalid token' });
+    res.status(401).send({ msg: 'Invalid token' });
+    return;
   }
 };
 
+//checking the admin rights
 export const adminAuth = (req, res, next) => {
   const { isAdmin } = req.user;
     if (!isAdmin)

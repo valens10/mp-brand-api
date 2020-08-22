@@ -17,8 +17,11 @@ exports.signIn = async function (req, res) {
         const token = await jwt.sign({
           userId: user._id
         },
-          "secret",
-          { expiresIn: "1h" }
+          process.env.PRIVATE_KEY,
+          {
+            algorithm: 'HS256',
+            expiresIn: "1h"
+          }
         );
 
       res.status(200).json({

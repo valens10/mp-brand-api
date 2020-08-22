@@ -1,14 +1,23 @@
 'use strict';
+require('dotenv').config();
+import { auth, adminAuth } from '../../middlewares/authorization';
 
 import mongoose from 'mongoose';
 const  Message = mongoose.model('Messages');
 
-exports.list_all_messages = function (req, res) {    
+exports.list_all_messages = async function (req, res, next) {
+  try {
+  // const token = req.header('Authorization');
+  // console.log("token", token.split(' ')[1]);
   Message.find({}, function(err, message) {
     if (err)
       res.send(err);
     res.json(message);
   });
+  } catch (error) {
+    console.log(error)
+  }
+
 };
 
 
