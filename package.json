@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "main": "main.js",
-    "start": "node main.js",
+    "start": "nodemon main.js",
+    "npm start":"nodemon main.js",
     "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
