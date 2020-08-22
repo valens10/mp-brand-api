@@ -3,7 +3,7 @@
 import mongoose from 'mongoose';
 const  Message = mongoose.model('Messages');
 
-exports.list_all_messages = function(req, res) {
+exports.list_all_messages = function (req, res) {    
   Message.find({}, function(err, message) {
     if (err)
       res.send(err);
