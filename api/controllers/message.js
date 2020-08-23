@@ -1,23 +1,57 @@
 'use strict';
+import jwt from 'jsonwebtoken';
 require('dotenv').config();
-import { auth, adminAuth } from '../../middlewares/authorization';
 
 import mongoose from 'mongoose';
-const  Message = mongoose.model('Messages');
+const Message = mongoose.model('Messages');
+
+
+  function checkAuthorization(req, res) {
+    const token = req.header('Authorization');
+  if (!token) {
+    res.status(401).send({ msg: 'Access Denied, Login first.' });
+    return 0;
+    }
+        
+  try {
+    const validToken = jwt.verify(token, process.env.PRIVATE_KEY);
+    req.user = validToken;
+    console.log("auth success")
+    return req.user;
+  } catch (error) {
+    res.status(401).send({ msg: 'Invalid token' });
+    return;
+  }
+  
+}
 
 exports.list_all_messages = async function (req, res, next) {
   try {
-  // const token = req.header('Authorization');
-  // console.log("token", token.split(' ')[1]);
-  Message.find({}, function(err, message) {
-    if (err)
-      res.send(err);
-    res.json(message);
-  });
+    const authUser = await checkAuthorization(req, res);
+    if (authUser) {
+      console.log("user: ", authUser)
+      if (authUser.isAdmin) {
+
+        // get all messages
+        Message.find({}, function (err, message) {
+          if (err) {
+            res.send(err);
+          } else {
+            res.json(message);
+          }
+
+        });
+      } else {
+        res.send("You are not allowed to perform this action.")
+      }
+    } else {
+      console.log("error with token")
+      return;
+    }
+
   } catch (error) {
     console.log(error)
   }
-
 };
 
 
