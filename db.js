@@ -17,7 +17,7 @@ database.on('error',
         console, 'MongoDB connection error:'
     ));
 database.once('open', function() {
-    console.log("we're connected!");
+    console.log("MongoDb is connected!");
 });
 
 

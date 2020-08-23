@@ -4,8 +4,9 @@
   "description": "This is the api backend for my brand project ",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "test": "jest",
+    "start": "nodemon -r esm app.js",
+    "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,18 @@
   },
   "homepage": "https://github.com/valens10/mp-brand-api#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "joi": "^17.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.28"
+  },
+  "devDependencies": {
+    "coveralls": "^3.1.0",
+    "jest": "^26.4.0",
+    "supertest": "^4.0.2"
   }
 }
