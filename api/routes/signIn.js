@@ -1,7 +1,6 @@
 'use strict';
-module.exports = function (app) {
-  var signInView = require('../controllers/signIn');
-
+import signInView from '../controllers/signIn';
+export default function (app) {
   // signup endpoint
   app.route('/users/sign_in')
     .post(signInView.signIn);

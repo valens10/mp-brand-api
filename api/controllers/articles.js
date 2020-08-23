@@ -1,8 +1,8 @@
 'use strict';
 
 
-var mongoose = require('mongoose'),
-  Post = mongoose.model('Posts');
+import mongoose from 'mongoose';
+const  Post = mongoose.model('Posts');
 
 exports.list_all_posts = function(req, res) {
   Post.find({}, function(err, post) {

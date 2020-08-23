@@ -1,12 +1,10 @@
 'use strict';
-module.exports = function(app) {
-  var articleView = require('../controllers/articles');
-
+import articleView from '../controllers/articles';
+export default function(app) {
   // posts Routes
   app.route('/articles')
     .get(articleView.list_all_posts)
     .post(articleView.create_a_post);
-
 
   app.route('/articles/:id')
     .get(articleView.read_a_post)

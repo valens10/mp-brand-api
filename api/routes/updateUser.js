@@ -1,7 +1,6 @@
 'use strict';
-module.exports = function (app) {
-  var updateusersView = require('../controllers/updateUser');
-
+import updateusersView from '../controllers/updateUser';
+export default function (app) {
   //update and delete a user endpoint
   app.route('/update_user/:id')
     .get(updateusersView.get_a_user)

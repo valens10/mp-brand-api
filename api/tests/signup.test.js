@@ -1,17 +1,30 @@
-const request = require('supertest');
-const app = require("../../app")
+import request from 'supertest';
+import app from "../../app";
 
-describe('test the user sign up', () => {
+import mongoose from 'mongoose';
+import db from "../../db";
+const User = mongoose.model('Users');
 
-  it('Should show status 404 Not found when url is wrong!', async (done) => {
+
+describe('Test user sign up', () => {
+  beforeAll(async () => {
+    await db;
+  });
+  afterEach(async () => {
+    await User.deleteMany();
+  });
+  it('Should return 201 if user created successfully', async (done) => {
     const user = {
-      full_name: "Valens",
-      email: 'testing@gmail.com',
-      password: 'testingPassword',
-      status: 'ACTIVE'
+      full_name: 'testing Name',
+      email: 'testing@example.com',
+      status:"ACTIVE",
+      password: 'passwordTesting'
     };
-      const res = await request(app).post('/users/sign_up_').send(user)
-          .expect(404);
-      done();
+    const res = await request(app).post('/user/sign_up').send(user);
+    expect(res.status).toBe(201);
+    // expect(res.body).toHaveProperty('user');
+    // expect(res.body).toHaveProperty('message');
+    // expect(res.body.user).toHaveProperty('email', user.email);
+    done();
   });
 });

@@ -1,16 +1,18 @@
 'use strict';
-var mongoose = require('mongoose'),
-  User = mongoose.model('Users');
-const validationSchema = require("../validation/validationSchema")
-
-const bcrypt = require('bcrypt');
+import mongoose from 'mongoose';
+import validationSchema from "../validation/validationSchema"
+import bcrypt from 'bcrypt';
+const User = mongoose.model('Users');
 
 exports.signUp = async function (req, res) {
   try {
     const params = await validationSchema.userSchema.validateAsync(req.body);
     const doesExist = await User.findOne({ email: params.email})
-    if (doesExist)
+    if (doesExist) {
       res.send("User with this email is exist");
+      return
+    }
+      
     
     //hash password
     const salt = await bcrypt.genSalt(10);
@@ -19,10 +21,14 @@ exports.signUp = async function (req, res) {
     const user = { full_name: params.full_name, email: params.email, status: params.status, password: hashedPassword };
     const new_user = new User(user);
     const savedUser = await new_user.save();
-    res.send(savedUser);
+    const message = "you have been successful registered"
+    res.status(200).json({
+      user: savedUser,
+      message
+    });
     
   } catch (error){
-    res.send(error.details.message);
+    res.send(error.details[0].message);
   }
   
 };

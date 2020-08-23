@@ -1,5 +1,6 @@
 'use strict';
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import { boolean } from 'joi';
 var Schema = mongoose.Schema;
 
 
@@ -17,6 +18,10 @@ var UserSchema = new Schema({
         enum: ['ACTIVE', 'INACTIVE'],
         default: 'INACTIVE' 
     }]
+    },
+    isAdmin: {
+    type: Boolean,
+    default: false
     },
     password: {
     type: String,

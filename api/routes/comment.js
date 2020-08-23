@@ -1,7 +1,6 @@
 'use strict';
-module.exports = function(app) {
-  var commentsView = require('../controllers/comment');
-
+import commentsView from '../controllers/comment';
+export default function(app) {
   // posts Routes
   app.route('/comments')
     .get(commentsView.list_all_comment)

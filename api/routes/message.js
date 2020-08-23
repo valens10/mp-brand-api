@@ -1,7 +1,6 @@
 'use strict';
-module.exports = function(app) {
-  var messagesView = require('../controllers/message');
-
+import messagesView from '../controllers/message';
+export default function(app) {
   // posts Routes
   app.route('/messages')
     .get(messagesView.list_all_messages)

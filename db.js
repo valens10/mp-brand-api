@@ -1,6 +1,6 @@
 // db.js
-const mongoose = require('mongoose');
-const config = require('./config');
+import mongoose from 'mongoose';
+import config from './config';
 
 const {
     db: {host,port,name}} = config;
@@ -21,4 +21,4 @@ database.once('open', function() {
 });
 
 
-module.exports = database;
+export default database;

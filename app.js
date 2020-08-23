@@ -1,16 +1,17 @@
 // app.js
-const express = require('express'),
-  app = express(),
-  mongoose = require('mongoose'),
-  config = require('./config'),
+import express from 'express';
+import mongoose from 'mongoose';
 
+import config from './config';
+
+const app = express();
   //created models loading here
-  model = require('./api/models/mybrandModel'),
-  bodyParser = require('body-parser');
+import model from './api/models/mybrandModel';
+import bodyParser from 'body-parser';
   
 //mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-const db = require('./db')
+import db from './db';
 const port = config.app.port;
 
 
@@ -20,12 +21,12 @@ app.use(bodyParser.urlencoded(
 app.use(bodyParser.json());
 
 //importing route
-var signup_routes = require('./api/routes/signup');
-var signin_routes = require('./api/routes/signIn');
-var updateUser_routes = require('./api/routes/updateUser');
-var post_routes = require('./api/routes/articles');
-var message_routes = require('./api/routes/message');
-var comment_routes = require('./api/routes/comment');
+import signup_routes from './api/routes/signup';
+import signin_routes from './api/routes/signIn';
+import updateUser_routes from './api/routes/updateUser';
+import post_routes from './api/routes/articles';
+import message_routes from './api/routes/message';
+import comment_routes from './api/routes/comment';
 
 //register the route
 signup_routes(app)
@@ -43,4 +44,4 @@ app.use(function(req, res) {
 
 app.listen(port, () => console.log("app is listerning on port " + port));
 
-module.exports = app; // for testing
+export default app; // for testingrt
