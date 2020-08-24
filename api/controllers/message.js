@@ -54,7 +54,6 @@ exports.list_all_messages = async function (req, res, next) {
   }
 };
 
-
 exports.create_a_message = function(req, res) {
   var new_message = new Message(req.body);
   new_message.save(function(err, message) {

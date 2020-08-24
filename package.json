@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "This is the api backend for my brand project ",
   "main": "app.js",
-  
   "jest": {
     "verbose": true,
     "testEnvironment": "node",
