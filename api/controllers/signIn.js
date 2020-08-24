@@ -2,6 +2,7 @@
 import mongoose from 'mongoose';
 import jwt from'jsonwebtoken';
 import bcrypt from 'bcrypt';
+require('dotenv').config();
 import validationSchema from "../validation/validationSchema"
 const User = mongoose.model('Users');
 
@@ -15,19 +16,19 @@ exports.signIn = async function (req, res) {
     //check password
       if (await bcrypt.compare(params.password, user.password)) {
         const token = await jwt.sign({
-          userId: user._id
+          userId: user._id,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          name:user.name
         },
           process.env.PRIVATE_KEY,
-          {
-            algorithm: 'HS256',
-            expiresIn: "1h"
-          }
+          {algorithm: 'HS256',expiresIn: "1h"}
         );
 
       res.status(200).json({
           user,
           message: "Auth success",
-          token: token.split(".")[0]
+          token: token
       })
       
   }else {
