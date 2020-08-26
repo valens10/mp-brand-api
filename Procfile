@@ -1,1 +1,1 @@
-worker: nodemon main.js
+worker: babel-node main.js

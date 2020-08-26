@@ -11,7 +11,7 @@
     ]
   },
   "scripts": {
-    "start": "nodemon main.js",
+    "start": "babel-node main.js",
     "test": "jest",
     "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "build": ".\\node_modules\\.bin\\babel"
