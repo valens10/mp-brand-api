@@ -1,5 +1,6 @@
 // app.js
 import express from 'express';
+require('dotenv').config();
 import mongoose from 'mongoose';
 
 import config from './config';
