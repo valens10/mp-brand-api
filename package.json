@@ -2,7 +2,7 @@
   "name": "my-brand-api",
   "version": "1.0.0",
   "description": "This is the api backend for my brand project ",
-  "main": "app.js",
+  "main": "main.js",
   "jest": {
     "verbose": true,
     "testEnvironment": "node",
@@ -11,7 +11,7 @@
     ]
   },
   "scripts": {
-    "start": "nodemon main.js",
+    "start": "node main.js",
     "test": "jest",
     "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
