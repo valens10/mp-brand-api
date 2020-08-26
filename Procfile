@@ -1,1 +1,1 @@
-worker: babel-node main.js
+web: npm start
