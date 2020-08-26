@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 import config from './config';
 
 const {
-    db: {host,port,name}} = config;
-
-const connectionString = `mongodb://${host}:${port}/${name}`;
+    db: { host, port, name } } = config;
+    
+const connectionString = 'mongodb+srv://kigc:ever@cluster0.61zsl.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority' || `mongodb://${host}:${port}/${name}`;
 mongoose.connect(connectionString,
     {useNewUrlParser: true,useUnifiedTopology: true}
 );
