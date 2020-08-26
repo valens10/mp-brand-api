@@ -5,7 +5,6 @@ import mongoose from 'mongoose';
 import config from './config';
 
 const app = express();
-  //created models loading here
 import model from './api/models/mybrandModel';
 import bodyParser from 'body-parser';
   
