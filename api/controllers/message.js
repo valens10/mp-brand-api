@@ -73,7 +73,7 @@ exports.get_a_message = function(req, res) {
 };
 
 
-exports.update_a_message = function(req, res) {
+exports.update_a_message = function (req, res) {
   Message.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, function(err, message) {
     if (err)
       res.send(err.message);
@@ -82,12 +82,21 @@ exports.update_a_message = function(req, res) {
 };
 
 
-exports.delete_a_message = function(req, res) {
-  Message.remove({
+exports.delete_a_message = async function (req, res) {
+  const authUser = await checkAuthorization(req, res);
+  if (authUser) {
+    if (authUser.isAdmin) {
+      Message.remove({
     _id: req.params.id
   }, function(err, message) {
     if (err)
       res.send(err.message);
     res.json({ message: 'Post successfully deleted.'});
   });
+    } else {
+      res.send("you are not allowed to perform this action")
+    }
+  } else {
+    res.send("You are not authorized, please login first.")
+  }
 };

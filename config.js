@@ -1,14 +1,14 @@
 // config.js
-//port = process.env.PORT || 3000,
+require('dotenv').config();
 const config = {
  app: {
-   port: 3000
+   port: process.env.SERVER_PORT
  },
     db: {
-        host: 'localhost',
-        port: 27017,
-        name: 'my_brand_db'
+        host: process.env.HOST,
+        port: process.env.DB_PORT,
+        name: process.env.DB_NAME
     }
 };
 
-module.exports = config;
+export default config;
