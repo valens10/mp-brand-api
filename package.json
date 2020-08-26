@@ -11,8 +11,8 @@
     ]
   },
   "scripts": {
-    "test": "jest",
     "start": "nodemon main.js",
+    "test": "jest",
     "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
