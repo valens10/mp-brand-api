@@ -41,6 +41,6 @@ app.use(function(req, res) {
 });
 
 
-app.listen(port || 5000, () => console.log("app is listerning on port " + port));
+app.listen(process.env.PORT || 5000, () => console.log("app is listerning on port " + port));
 
 export default app; // for testingrt
