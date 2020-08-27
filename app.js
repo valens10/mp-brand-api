@@ -15,10 +15,6 @@ mongoose.Promise = global.Promise;
 import db from './db';
 const port = config.app.port;
 
-//cors config
-app.use(cors({origin: '*'}));
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded(
     { extended: true }
@@ -31,6 +27,10 @@ import updateUser_routes from './api/routes/updateUser';
 import post_routes from './api/routes/articles';
 import message_routes from './api/routes/message';
 import comment_routes from './api/routes/comment';
+
+
+//cors config
+app.use(cors({ origin: '*' }));
 
 //register the route
 signup_routes(app);
@@ -48,4 +48,4 @@ app.use(function(req, res) {
 
 app.listen(process.env.PORT || 5000, () => console.log("app is listerning on port " + port));
 
-export default app; // for testingrt
+export default app;
