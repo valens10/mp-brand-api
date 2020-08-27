@@ -6,6 +6,7 @@ const User = mongoose.model('Users');
 
 exports.signUp = async function (req, res) {
   try {
+    console.log("body params",req.body)
     const params = await validationSchema.userSchema.validateAsync(req.body);
     const doesExist = await User.findOne({ email: params.email})
     if (doesExist) {
