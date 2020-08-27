@@ -1,5 +1,6 @@
 // app.js
 import express from 'express';
+import cors from 'cors'
 require('dotenv').config();
 import mongoose from 'mongoose';
 
@@ -14,7 +15,7 @@ mongoose.Promise = global.Promise;
 import db from './db';
 const port = config.app.port;
 
-
+app.use(cors)
 app.use(bodyParser.urlencoded(
     { extended: true }
 ));
