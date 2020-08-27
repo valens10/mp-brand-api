@@ -15,11 +15,16 @@ mongoose.Promise = global.Promise;
 import db from './db';
 const port = config.app.port;
 
-app.use(cors())
 app.use(bodyParser.urlencoded(
     { extended: true }
 ));
-app.use(bodyParser.json());
+
+//cors config
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200,
+  }
+app.use(cors(corsOptions));
 
 //importing route
 import signup_routes from './api/routes/signup';
@@ -30,8 +35,8 @@ import message_routes from './api/routes/message';
 import comment_routes from './api/routes/comment';
 
 //register the route
-signup_routes(app)
-signin_routes(app)
+signup_routes(app);
+signin_routes(app);
 updateUser_routes(app);
 post_routes(app);
 message_routes(app);
