@@ -16,11 +16,7 @@ import db from './db';
 const port = config.app.port;
 
 //cors config
-var corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200,
-  }
-app.use(cors(corsOptions));
+app.use(cors({origin: '*'}));
 
 
 app.use(bodyParser.json());
