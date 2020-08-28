@@ -1,6 +1,6 @@
 // app.js
 import express from 'express';
-import cors from 'cors'
+//import cors from 'cors'
 require('dotenv').config();
 import mongoose from 'mongoose';
 
@@ -30,6 +30,7 @@ import comment_routes from './api/routes/comment';
 
 
 //cors config
+var cors = require('cors');
 app.use(cors());
 
 //register the route
