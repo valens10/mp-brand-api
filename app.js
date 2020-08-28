@@ -15,8 +15,7 @@ app.use(cors());
   
 
 app.use(express.urlencoded(
-    { extended: true }
-));
+    { extended: false }));
 const port = config.app.port;
 
 
