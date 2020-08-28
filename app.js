@@ -1,6 +1,6 @@
 // app.js
 import express from 'express';
-//import cors from 'cors'
+import cors from 'cors'
 require('dotenv').config();
 import mongoose from 'mongoose';
 
@@ -19,8 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded(
     { extended: true }
 ));
-//cors config
-// app.use(cors());
+
 
 // app.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', '*');
@@ -42,6 +41,9 @@ updateUser_routes(app);
 post_routes(app);
 message_routes(app);
 comment_routes(app);
+
+//cors config
+app.use(cors());
 
 //raise error when url not found.
 app.use(function(req, res) {
