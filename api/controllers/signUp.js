@@ -5,9 +5,6 @@ import bcrypt from 'bcrypt';
 const User = mongoose.model('Users');
 
 exports.signUp = async function (req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader("Access-Control-Allow-Headers", "*");
   try {
     console.log("body params",req.body)
     const params = await validationSchema.userSchema.validateAsync(req.body);

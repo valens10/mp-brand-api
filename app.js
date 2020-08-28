@@ -30,7 +30,7 @@ import comment_routes from './api/routes/comment';
 
 
 //cors config
-app.use(cors({ origin: '*' }));
+app.use(cors());
 
 //register the route
 signup_routes(app);
