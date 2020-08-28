@@ -3,22 +3,21 @@ import express from 'express';
 import cors from 'cors'
 require('dotenv').config();
 import mongoose from 'mongoose';
-
+//import bodyParser from 'body-parser';
 import config from './config';
+import model from './api/models/mybrandModel';
+import db from './db';
+mongoose.Promise = global.Promise;
 
 const app = express();
-import model from './api/models/mybrandModel';
-import bodyParser from 'body-parser';
+app.use(express.json());
+app.use(cors());
   
-//mongoose instance connection url connection
-mongoose.Promise = global.Promise;
-import db from './db';
-const port = config.app.port;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded(
+app.use(express.urlencoded(
     { extended: true }
 ));
+const port = config.app.port;
 
 
 // app.use((req, res, next) => {
@@ -42,8 +41,7 @@ post_routes(app);
 message_routes(app);
 comment_routes(app);
 
-//cors config
-app.use(cors());
+
 
 //raise error when url not found.
 app.use(function(req, res) {
