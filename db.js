@@ -5,13 +5,12 @@ import config from './config';
 const {
     db: { host, port, name } } = config;
     
-const connectionString = `mongodb+srv://valens10:${process.env.DB_PASSWORD}@cluster0.58ree.mongodb.net/<dbname>?retryWrites=true&w=majority` || `mongodb://:${port}/${name}`;
+const connectionString = `mongodb+srv://kigc:ever@cluster0.61zsl.gcp.mongodb.net/yvan-blog?retryWrites=true&w=majority` || `mongodb://:${port}/${name}`;
 mongoose.connect(connectionString,
     {useNewUrlParser: true,useUnifiedTopology: true}
 );
 
 var database = mongoose.connection;
-//Bind connection to error event (to get notification of connection errors)
 database.on('error',
     console.error.bind(
         console, 'MongoDB connection error:'
