@@ -1,6 +1,6 @@
 // app.js
 import express from 'express';
-import cors from 'cors'
+//import cors from 'cors'
 require('dotenv').config();
 import mongoose from 'mongoose';
 
@@ -20,12 +20,12 @@ app.use(bodyParser.urlencoded(
     { extended: true }
 ));
 //cors config
-app.use(cors());
+// app.use(cors());
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
 
 //importing route
 import signup_routes from './api/routes/signup';
