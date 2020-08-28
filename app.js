@@ -1,6 +1,6 @@
 // app.js
 import express from 'express';
-//import cors from 'cors'
+import cors from 'cors'
 require('dotenv').config();
 import mongoose from 'mongoose';
 
@@ -19,6 +19,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded(
     { extended: true }
 ));
+//cors config
+app.use(cors());
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 //importing route
 import signup_routes from './api/routes/signup';
@@ -27,11 +34,6 @@ import updateUser_routes from './api/routes/updateUser';
 import post_routes from './api/routes/articles';
 import message_routes from './api/routes/message';
 import comment_routes from './api/routes/comment';
-
-
-//cors config
-var cors = require('cors');
-app.use(cors());
 
 //register the route
 signup_routes(app);
@@ -47,6 +49,6 @@ app.use(function(req, res) {
 });
 
 
-app.listen(process.env.PORT || 5000, () => console.log("app is listerning on port " + port));
+app.listen(process.env.PORT || 3000, () => console.log("app is listerning on port " + port));
 
 export default app;
