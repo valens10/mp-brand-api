@@ -5,7 +5,7 @@ import config from './config';
 const {
     db: { host, port, name } } = config;
     
-const connectionString = 'mongodb+srv://valens10:' + process.env.DB_PASSWORD + '@cluster0.58ree.mongodb.net/<dbname>?retryWrites=true&w=majority' || `mongodb://${host}:${port}/${name}`;
+const connectionString = `mongodb+srv://valens10:${process.env.DB_PASSWORD}@cluster0.58ree.mongodb.net/<dbname>?retryWrites=true&w=majority` || `mongodb://:${port}/${name}`;
 mongoose.connect(connectionString,
     {useNewUrlParser: true,useUnifiedTopology: true}
 );
