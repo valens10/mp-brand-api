@@ -11,7 +11,7 @@ exports.signIn = async function (req, res) {
     const params = await validationSchema.userLoginSchema.validateAsync(req.body);
     const user = await User.findOne({ email: params.email})
       if (user == null)
-          res.send("User does not exist. ");
+          res.status(401).json({msg:"User does not exist. "});
     
     //check password
       if (await bcrypt.compare(params.password, user.password)) {
@@ -24,20 +24,27 @@ exports.signIn = async function (req, res) {
           process.env.PRIVATE_KEY,
           {algorithm: 'HS256',expiresIn: "1h"}
         );
+        const response = {
+          _id: user._id,
+          full_name: user.full_name,
+          isAdmin: user.isAdmin,
+          email: user.email,
+          created_at: user.created_at
+        };
 
       res.status(200).json({
-          user,
-          message: "Auth success",
+          user:response,
+          message: "login success",
           token: token
       })
       
   }else {
-      res.status(400).send("Not allowed, Incorect password")
+      res.status(400).json({msg:"Not allowed, Incorect password"})
       
       } 
     
   } catch (error){
-    res.send(error.details[0].message);
+    res.json({err:error.details[0].message});;
   }
 
 };
